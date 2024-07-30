@@ -30,7 +30,7 @@ python demo.py
 
 We modified the origional <a href="https://github.com/openai/CLIP.git">Clip</a> model to meet our requirements with these two aspects:
 <li>Accelerate inference using AMD NPU</li>
-<li>Using <a href="https://github.com/facebookresearch/faiss.git">Faiss</a> to do quick retrive epspecially for large mount of data</li>
+<li>Using <a href="https://github.com/facebookresearch/faiss.git">Faiss</a> to do quick retrieve epspecially for large mount of data</li>
 <br>
 Clip model was trained in a variety of (image, text) pairs. It can be instructed in natural language to predict the most relevant text snippet. that means if a text is related to an image, then the text vector(encoded by Clip's text encoder) and the vision vector(encoded by Clip's vision encoder) will be very close, this is the basic principle of our method.
 We first split origional Clip model into two models: clip vision and clip text which were used to do image/text feature extracion. Then we export these two pytorch models to ONNX models with full precision version. At last, we use vitis AI ONNX quantization tool get the quantization model specific for model accelerate inference with AMD NPU.
