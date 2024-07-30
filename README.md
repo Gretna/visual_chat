@@ -7,7 +7,7 @@ This is the visual chat official repository. We focus on implementing an easy wa
 ### Prerequisite
 
 <li>Vitis AI</li>
-this project will using AMD vitis AI library to accelerate DNN model inference, so make sure you have the proper hardware. Then follow this instruction to install the AMD NPU driver and other libraries <a href="https://ryzenai.docs.amd.com/en/latest/inst.html#">Install Vitis</a>.
+this project will use AMD vitis AI library to accelerate DNN model inference, so make sure you have the proper hardware. Then follow this instruction to install AMD NPU driver and other libraries <a href="https://ryzenai.docs.amd.com/en/latest/inst.html#">Install Vitis</a>.
 Note: <font color='red'>Before you start, you should enable NPU in bios setting, then you can using NPU to accelerate model inference.</font>
 
 <li>Python environment</li>
