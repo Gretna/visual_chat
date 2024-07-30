@@ -36,7 +36,6 @@ class CalibDataloader(CalibrationDataReader):
         super().__init__()
         files = os.listdir(image_folder)
         random.shuffle(files)
-        # _, preprocess = clip.load("RN101", download_root="models")
         preprocess = transform(img_npx)
         calibData = []
         for file in files[:size]:
