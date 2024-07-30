@@ -1,4 +1,4 @@
-'''
+"""
 file name:
     transform.py
 author:
@@ -7,7 +7,7 @@ email:
     1020119164@qq.com
 summary:
     this file is used to do the preprocess for image.
-'''
+"""
 
 from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize
 from PIL import Image

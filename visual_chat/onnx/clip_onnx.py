@@ -1,4 +1,4 @@
-'''
+"""
 file name:
     clip_onnx.py
 author:
@@ -9,7 +9,8 @@ summary:
     this file is used to export original clip model to ONNX model.
     first we seperate Clip model to two models: clip vision and clip text.
     And then export these two models to ONNX models correspondingly.
-'''
+"""
+
 import torch
 
 
@@ -61,8 +62,8 @@ def export_onnx(
 ):
     """
     export clip vision/text model to onnx
-    vision_onnx: onnx file name for clip vision model
-    text_onnx: onnx file name for clip text model
+    vision_onnx: exported onnx file name for clip vision model
+    text_onnx: exported onnx file name for clip text model
     mode_name: which clip model will be exported, see clip.available_models() for details
     cache_dir: download path for clip model weight
     """

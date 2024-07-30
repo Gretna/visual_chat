@@ -14,7 +14,7 @@ from datasets import Dataset
 from PIL import Image
 import numpy as np
 import os
-from util.transform import transform
+from .util.transform import transform
 import faiss
 
 
@@ -26,13 +26,19 @@ class VisualChat:
         text_onnx: str,
         faiss_index: str = "img_index.faiss",
         vaip_config: str = "vaip_config.json",
+        n_px: int = 224,
     ) -> None:
         """
         folder: searching folder that contains images
+        vision_onnx: clip vision onnx model file
+        text_onnx: clip text onnx model file
         faiss_index: faiss indexing file name saved to disk
+        vaip_config: vitis runtime config file
+        n_px: image pixel input to model
         """
         self._folder = folder
         self._faiss_index = faiss_index
+        self._img_preprocess = transform(n_px=n_px)
         self._init_vision_model(vision_onnx, vaip_config)
         self._init_text_model(text_onnx, vaip_config)
         self._create_faiss_index()
@@ -76,22 +82,23 @@ class VisualChat:
                 continue
         return Dataset.from_dict({"image": images, "source": files})
 
-    def _encode_image(self, image: str):
+    def _encode_image(self, image: Image):
         """
-        img: image file path
+        encode image to get image feature
+        img: Image object
         """
-        img = transform(Image.open(image))
+        img = self._img_preprocess(image).unsqueeze(0)
         vision_out = self._vision_session.run([], {"x": img.numpy()})
         return vision_out[0][0]
 
     def _encode_text(self, text: str):
         """
+        encode text to get text feature 
         text: text to be encoded by clip text encoder
         """
         import clip
 
         text = clip.tokenize([text])
-
         text_out = self._text_session.run(
             None,
             {"text": text.numpy()},
