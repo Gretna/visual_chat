@@ -45,7 +45,7 @@ if we have large mount of images, then searching for a specific image will be mu
 
 ## Future work
 <li>In the future, we will seek for a more powerful vision model to improve performance.</li>
-<li>seek for a stronger Text encoder, fine-tune it for this task</li>
+<li>Seek for a stronger Text encoder, fine-tune it for this task</li>
 <li>Add support for video content searching</li>
 <li>Multi-language support</li>
 
